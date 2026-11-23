@@ -1,0 +1,11 @@
+// Configuración del Worker de Cloudflare que publica el sitio (solo archivos estáticos).
+// "name" debe coincidir con el nombre del proyecto en Cloudflare: clubdeportescastro.
+{
+  "name": "clubdeportescastro",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./public",
+    // Cualquier dirección que no exista muestra public/404.html con código 404.
+    "not_found_handling": "404-page"
+  }
+}
