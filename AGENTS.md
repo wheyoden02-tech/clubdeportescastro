@@ -4,7 +4,7 @@ Instrucciones para cualquier agente (Claude Code, Codex, Cursor u otro) que trab
 
 ## Qué es
 
-Sitio estático para deportescastro.cl, el club de básquetbol de Castro, Chiloé. No hay build ni dependencias. La carpeta `public/` se publica tal cual en Cloudflare Pages, y cada push a `main` publica en uno o dos minutos.
+Sitio estático para deportescastro.cl, el club de básquetbol de Castro, Chiloé. No hay build ni dependencias. Se publica como **Worker de Cloudflare con archivos estáticos** (proyecto `clubdeportescastro`, conectado a GitHub). Cada push a `main` publica la carpeta `public/` tal cual en menos de un minuto. `wrangler.jsonc` define el nombre del Worker (debe seguir siendo `clubdeportescastro`) y hace que cualquier dirección inexistente muestre `public/404.html`.
 
 | Archivo | Para qué sirve |
 | --- | --- |

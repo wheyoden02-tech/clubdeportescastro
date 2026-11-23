@@ -45,11 +45,11 @@ En [GitHub](https://github.com/wheyoden02-tech/clubdeportescastro), comprueba qu
 
 ## Cambios posteriores
 
-Edita public/index.html para cambiar textos y enlaces, public/estilos.css para el diseño y public/assets para el material visual. Cada push a main activa una nueva publicación en Pages una vez que esté conectado.
+Edita public/index.html para cambiar textos y enlaces, public/estilos.css para el diseño y public/assets para el material visual. Cada push a main activa una nueva publicación en Cloudflare. El sitio quedó publicado como Worker de archivos estáticos (proyecto **clubdeportescastro**). wrangler.jsonc indica ese nombre y hace que cualquier dirección que no exista muestre public/404.html; no cambies el nombre que aparece ahí.
 
 ### Partidos y plantilla (automático)
 
-Dos veces al día, GitHub ejecuta scripts/actualizar_datos_liga.py. El script lee la [ficha pública del club en la LNB](https://lnbchile.com/liga/uno/equipos/17) y actualiza public/datos/liga.js con los últimos 5 partidos, el récord y la lista de jugadores. Si hay cambios, los guarda y Pages los publica. No hay que hacer nada.
+Dos veces al día, GitHub ejecuta scripts/actualizar_datos_liga.py. El script lee la [ficha pública del club en la LNB](https://lnbchile.com/liga/uno/equipos/17) y actualiza public/datos/liga.js con los últimos 5 partidos, el récord y la lista de jugadores. Si hay cambios, los guarda y Cloudflare los publica. No hay que hacer nada.
 
 - La liga entrega los nombres abreviados ("ALVAREZ, N."). En **public/datos/plantilla.js** se pueden agregar, de forma opcional, el nombre completo y la posición de cada jugador, además del entrenador, que la liga no publica. Un jugador sin esos datos se muestra igual, como "N. Alvarez". Para hacer este cambio con un agente de IA, basta con pedírselo: las instrucciones están en AGENTS.md.
 - Si al empezar una temporada la ficha viene vacía, la web conserva los datos anteriores.
