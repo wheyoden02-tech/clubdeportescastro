@@ -28,7 +28,7 @@ En [GitHub](https://github.com/wheyoden02-tech/clubdeportescastro), comprueba qu
 | Root directory | Dejar el valor predeterminado |
 | Variables de entorno | Ninguna |
 
-4. Pulsa **Save and Deploy**. Abre la dirección pages.dev que aparezca al terminar. Desde tu celular, revisa la portada, cambia entre las dos camisetas y toca Instagram y Facebook. Puedes compartir esta dirección con la persona del club para revisar la propuesta antes de conectar el .cl.
+4. Pulsa **Save and Deploy**. Abre la dirección pages.dev que aparezca al terminar. Desde tu celular, revisa la portada, reproduce y pausa el giro de la camiseta y toca Instagram y Facebook. Puedes compartir esta dirección con la persona del club para revisar la propuesta antes de conectar el .cl.
 
 [Guía de integración de Git de Cloudflare](https://developers.cloudflare.com/pages/get-started/git-integration/)
 
@@ -47,4 +47,5 @@ En [GitHub](https://github.com/wheyoden02-tech/clubdeportescastro), comprueba qu
 
 Edita public/index.html para cambiar textos y enlaces, public/estilos.css para el diseño y public/assets para el material visual. Cada push a main activa una nueva publicación en Pages una vez que esté conectado.
 
-Los hitos se redactaron a partir del artículo de [Club Deportes Castro](https://es.wikipedia.org/wiki/Club_Deportes_Castro) entregado para este proyecto. Los perfiles sociales se identificaron en la grabación proporcionada. La foto, el escudo y las dos vistas de camiseta provienen del material compartido. La licencia de la tipografía Barlow Condensed está en public/assets/OFL.txt.
+Los hitos se redactaron a partir del artículo de [Club Deportes Castro](https://es.wikipedia.org/wiki/Club_Deportes_Castro) entregado para este proyecto. Los perfiles sociales se identificaron en la grabación proporcionada. La foto, el escudo y la animación de la camiseta provienen del material compartido. La licencia de la tipografía Barlow Condensed está en public/assets/OFL.txt.
+
