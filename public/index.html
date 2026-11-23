@@ -26,7 +26,7 @@
     "alternateName": "Deportes Castro",
     "sport": "Básquetbol",
     "url": "https://deportescastro.cl/",
-    "logo": "https://deportescastro.cl/assets/escudo.jpg",
+    "logo": "https://deportescastro.cl/assets/escudo-512.png",
     "image": "https://deportescastro.cl/assets/compartir.jpg",
     "foundingDate": "2003-02-12",
     "memberOf": { "@type": "SportsOrganization", "name": "Liga Nacional de Básquetbol de Chile", "url": "https://lnbchile.com/" },
@@ -34,7 +34,8 @@
     "sameAs": ["https://www.instagram.com/clubdeportescastro/", "https://www.facebook.com/profile.php?id=100064585005667"]
   }
   </script>
-  <link rel="icon" href="assets/escudo.jpg">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="preload" href="assets/archivo-narrow.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
   <link rel="preload" href="assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin fetchpriority="low">
   <style>
@@ -106,12 +107,14 @@ nav{font-weight:550}.tag,figcaption{font-weight:650}.kit-inner{padding-block:30p
 .giro{aspect-ratio:440/768;background:#e7edda;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
 .crest img{height:auto}
 #partidos,.roster,#historia,.kits,.social{content-visibility:auto;contain-intrinsic-size:auto 700px}
-  </style>
+  .crest{overflow:visible}.crest img{width:100%}
+.team .sello{position:absolute;z-index:2;width:clamp(78px,9vw,112px);height:auto;left:-28px;top:-30px;transform:rotate(-10deg);filter:drop-shadow(4px 6px 0 #061e1873)}@media(max-width:760px){.team .sello{left:-12px;top:-26px}}
+</style>
 </head>
 <body id="inicio">
 <a class="skip" href="#principal">Ir al contenido</a>
 <header><div class="wrap nav">
-  <a class="brand" href="#inicio"><span class="crest"><img src="assets/escudo-120.webp" alt="" width="120" height="120"></span><span>CLUB DEPORTES<br><strong>CASTRO</strong></span></a>
+  <a class="brand" href="#inicio"><span class="crest"><img src="assets/escudo-144.webp" alt="" width="144" height="144"></span><span>CLUB DEPORTES<br><strong>CASTRO</strong></span></a>
   <nav aria-label="Principal"><a href="#partidos">Partidos</a><a href="#plantilla">Plantilla</a><a href="#historia">Historia</a><a href="#camisetas">Camiseta</a></nav>
 </div></header>
 <main id="principal">
@@ -120,7 +123,7 @@ nav{font-weight:550}.tag,figcaption{font-weight:650}.kit-inner{padding-block:30p
   <h1 id="titulo">EL LEÓN<br><em>DE CHILOÉ</em></h1>
   <p class="summary">Básquetbol de Castro, Chiloé. Los Leones juegan de local en el Gimnasio Fiscal.</p>
   <a class="button" href="#historia">Historia del club</a></div>
-  <figure class="team"><div class="image-frame"><picture><source type="image/avif" srcset="assets/equipo-640.avif 640w, assets/equipo-960.avif 960w" sizes="(max-width: 760px) 88vw, 600px"><img src="assets/equipo-960.webp" srcset="assets/equipo-640.webp 640w, assets/equipo-960.webp 960w" sizes="(max-width: 760px) 88vw, 600px" fetchpriority="high" alt="Jugadores y cuerpo técnico de Deportes Castro reunidos bajo el aro, con la camiseta verde." width="960" height="640"></picture></div><figcaption><span>CLUB DEPORTES CASTRO</span><span>CHILOÉ, CHILE</span></figcaption></figure>
+  <figure class="team"><img class="sello" src="assets/escudo-240.webp" alt="" width="240" height="240" decoding="async"><div class="image-frame"><picture><source type="image/avif" srcset="assets/equipo-640.avif 640w, assets/equipo-960.avif 960w" sizes="(max-width: 760px) 88vw, 600px"><img src="assets/equipo-960.webp" srcset="assets/equipo-640.webp 640w, assets/equipo-960.webp 960w" sizes="(max-width: 760px) 88vw, 600px" fetchpriority="high" alt="Jugadores y cuerpo técnico de Deportes Castro reunidos bajo el aro, con la camiseta verde." width="960" height="640"></picture></div><figcaption><span>CLUB DEPORTES CASTRO</span><span>CHILOÉ, CHILE</span></figcaption></figure>
 </div></section>
 <section id="partidos" class="wrap section games-section" aria-labelledby="titulo-partidos">
 <div class="section-head"><div><p class="tag dark">LIGA NACIONAL DE BÁSQUETBOL</p><h2 id="titulo-partidos">Últimos partidos</h2></div><p class="record" id="record"></p></div>

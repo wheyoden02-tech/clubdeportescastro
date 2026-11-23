@@ -89,7 +89,7 @@ No pongas años fijos en textos que deban seguir siendo ciertos con el tiempo (p
 ## Rendimiento
 
 El sitio apunta a 100 en PageSpeed Insights. Al hacer cambios:
-- Imágenes con el tamaño en que se muestran. La foto del equipo (el elemento principal, LCP) va en `<picture>` con AVIF (`equipo-640/960.avif`) y respaldo WebP (`equipo-640/960.webp`): mantenle `fetchpriority="high"` y nunca `loading="lazy"`. El escudo es `escudo-120.webp`.
+- Imágenes con el tamaño en que se muestran. La foto del equipo (el elemento principal, LCP) va en `<picture>` con AVIF (`equipo-640/960.avif`) y respaldo WebP (`equipo-640/960.webp`): mantenle `fetchpriority="high"` y nunca `loading="lazy"`. El escudo sale de un original de 2048 px con fondo transparente (`logo nuevo.png` en la carpeta raíz del dueño, fuera de git). Versiones publicadas: `escudo-144.webp` (encabezado), `escudo-240.webp` (sello sobre la foto del equipo), `escudo-512.png` (logo para Google en los datos estructurados), `favicon-48.png` y `apple-touch-icon.png`. Si el club entrega otro escudo, regenera esas cinco desde el original.
 - El dibujo de la cancha es `assets/cancha.svg` cargado como `<img>`. No lo vuelvas a incrustar como `<svg>` en el HTML: incrustado y girado le cuesta mucho más al procesador del celular.
 - Las dos fuentes se precargan con `fetchpriority="low"`, para que lleguen temprano sin quitarle velocidad a la foto principal. Quitar la precarga empeora el rendimiento, porque la página se redibuja cuando la fuente llega tarde.
 - Fuentes en WOFF2 recortadas a caracteres latinos (`python -m fontTools.subset`). Si agregas otra fuente, conviértela igual.
