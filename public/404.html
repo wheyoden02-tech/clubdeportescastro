@@ -69,29 +69,122 @@ nav{font-weight:550}.tag,figcaption{font-weight:650}.kit-inner{padding-block:30p
 .lost-inner{position:relative;padding:clamp(70px,10vw,130px) 0}
 .lost-code{position:absolute;right:0;top:50%;transform:translateY(-50%);font:700 clamp(9rem,26vw,22rem)/.8 var(--head);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px #d2f75b59;pointer-events:none;user-select:none}
 .lost .summary{max-width:440px}
-.ball{position:absolute;width:clamp(70px,9vw,120px);right:9%;bottom:10%;fill:#e68713;stroke:#2a1606;stroke-width:3;pointer-events:none;animation:bote 1.6s cubic-bezier(.5,0,.5,1) infinite alternate}
-@keyframes bote{from{transform:translateY(-38px) rotate(-12deg)}to{transform:translateY(0) rotate(14deg)}}
-@media(max-width:760px){.lost-code{top:auto;bottom:-10px;transform:none;opacity:.7}.ball{right:6%;bottom:auto;top:24px}}
-@media(prefers-reduced-motion:reduce){.ball{animation:none}}
+
+}
+@media(max-width:760px){.lost-code{top:auto;bottom:-10px;transform:none;opacity:.7}}
+
 .giro{aspect-ratio:440/768;background:#e7edda;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
 .crest img{height:auto}
 #partidos,.roster,#historia,.kits,.social{content-visibility:auto;contain-intrinsic-size:auto 700px}
-  </style>
+  .lost-inner{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);gap:40px 6%;align-items:center}
+.lost-text{position:relative}
+.juego{position:relative;background:#06231bcc;border:1px solid #ffffff26;border-radius:10px;padding:18px 18px 16px}
+.juego h2{font:650 1rem/1.3 "DM Sans",sans-serif;letter-spacing:0;color:#e1eae2;margin-bottom:8px}
+.juego-cancha{display:block;width:100%;height:auto;overflow:visible}
+.tablero{fill:#f8f8ef}.soporte{fill:none;stroke:#a8cb88;stroke-width:3}.aro{stroke:#e68713;stroke-width:4;stroke-linecap:round}
+.red{fill:none;stroke:#f8f8efb3;stroke-width:1.2}.piso{stroke:#a8cb8866;stroke-width:2}
+#pelota circle{fill:#e68713;stroke:#2a1606;stroke-width:1.6}#pelota path{fill:none;stroke:#2a1606;stroke-width:1.4}
+#pelota{cursor:pointer}
+.medidor{position:relative;height:12px;margin:12px 0 14px;border-radius:6px;background:#ffffff1f;overflow:hidden}
+.zona{position:absolute;top:0;bottom:0;left:55%;width:14%;background:#d2f75b8c}
+.marca{position:absolute;top:-2px;bottom:-2px;left:0;width:4px;margin-left:-2px;border-radius:2px;background:#fff;box-shadow:0 0 0 1px #06231b}
+.juego-pie{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.lanzar{border:0;cursor:pointer;font:inherit;font-weight:bold}
+.lanzar:disabled{opacity:.6;cursor:default}
+.lanzar:focus-visible{outline:3px solid #e68713;outline-offset:3px}
+.marcador{margin:0;font-size:.92rem;color:#e1eae2}
+@media(max-width:760px){.lost-inner{grid-template-columns:1fr;padding:48px 0 56px}.lost-code{display:none}}
+</style>
 </head>
 <body class="lost-page">
 <header><div class="wrap nav">
   <a class="brand" href="/"><span class="crest"><img src="/assets/escudo-120.webp" alt="" width="120" height="120"></span><span>CLUB DEPORTES<br><strong>CASTRO</strong></span></a>
 </div></header>
-<main class="hero lost" aria-labelledby="titulo"><img class="court" src="/assets/cancha.svg" alt="" width="908" height="492" decoding="async"><svg class="ball" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-  <circle cx="50" cy="50" r="47"/>
-  <path d="M3 50h94 M50 3v94 M17 17c18 15 18 51 0 66 M83 17c-18 15-18 51 0 66"/>
-</svg><div class="wrap lost-inner">
+<main class="hero lost" aria-labelledby="titulo"><img class="court" src="/assets/cancha.svg" alt="" width="908" height="492" decoding="async"><div class="wrap lost-inner">
   <p class="lost-code" aria-hidden="true">404</p>
+  <div class="lost-text">
   <p class="tag">PELOTA AFUERA</p>
   <h1 id="titulo">ESTA PÁGINA<br><em>NO EXISTE</em></h1>
   <p class="summary">Puede que el enlace esté mal escrito o que la página se haya movido. Vuelve a la cancha y sigue el juego desde el inicio.</p>
   <a class="button" href="/">Volver a la cancha</a>
+  </div>
+  <section class="juego" aria-labelledby="juego-titulo">
+    <h2 id="juego-titulo">Mientras tanto, un tiro libre</h2>
+    <svg class="juego-cancha" viewBox="0 0 300 200" aria-hidden="true" focusable="false">
+      <rect class="tablero" x="262" y="26" width="6" height="62" rx="1"/>
+      <path class="soporte" d="M268 57h22v143"/>
+      <path class="red" d="M224 74l6 30h20l6-30 M230 74l5 30 M240 74v30 M250 74l-5 30 M228 86h24 M231 96h18"/>
+      <g id="pelota"><circle cx="0" cy="0" r="11"/><path d="M-11 0h22 M0-11v22 M-7.5-7.5c4 4 4 11 0 15 M7.5-7.5c-4 4-4 11 0 15"/></g>
+      <path class="aro" d="M222 74h40"/>
+      <path class="piso" d="M0 194h300"/>
+    </svg>
+    <div class="medidor" aria-hidden="true"><span class="zona"></span><span class="marca"></span></div>
+    <div class="juego-pie">
+      <button type="button" class="button lanzar">Lanzar</button>
+      <p class="marcador" aria-live="polite">Suelta en la zona verde.</p>
+    </div>
+  </section>
 </div></main>
 <footer><div class="wrap"><span>Club Deportes Castro</span><span>Castro · Isla de Chiloé · Chile</span><span class="credit">Página diseñada por <a href="https://sinpausas.cl" rel="noopener">Sin Pausas</a></span></div></footer>
+<script>
+(() => {
+  const pelota = document.getElementById("pelota");
+  const marca = document.querySelector(".marca");
+  const boton = document.querySelector(".lanzar");
+  const marcador = document.querySelector(".marcador");
+  const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const INICIO = [44, 182], ARO = [242, 70], ZONA = [0.55, 0.69];
+  let tiros = 0, encestes = 0, lanzando = false, t0 = performance.now();
+  const poner = (x, y, giro = 0) => pelota.setAttribute("transform", `translate(${x} ${y}) rotate(${giro})`);
+  const fuerza = (t) => { const f = ((t - t0) / 1100) % 2; return f < 1 ? f : 2 - f; };
+  poner(...INICIO);
+
+  const mover = () => {
+    if (!lanzando) marca.style.left = (fuerza(performance.now()) * 100) + "%";
+    requestAnimationFrame(mover);
+  };
+  if (!quieto) requestAnimationFrame(mover); else marca.style.left = "62%";
+
+  // Trayectoria: parábola hasta un punto final y, si corresponde, una segunda caída.
+  const tramo = (desde, hasta, alto, ms) => new Promise((listo) => {
+    if (quieto) { poner(...hasta); return listo(); }
+    const ini = performance.now();
+    const paso = (ahora) => {
+      const k = Math.min((ahora - ini) / ms, 1);
+      const x = desde[0] + (hasta[0] - desde[0]) * k;
+      const y = desde[1] + (hasta[1] - desde[1]) * k - alto * 4 * k * (1 - k);
+      poner(x, y, k * 360);
+      k < 1 ? requestAnimationFrame(paso) : listo();
+    };
+    requestAnimationFrame(paso);
+  });
+
+  const lanzar = async () => {
+    if (lanzando) return;
+    lanzando = true; boton.disabled = true;
+    const p = quieto ? 0.45 + Math.random() * 0.35 : fuerza(performance.now());
+    tiros++;
+    let texto;
+    if (p >= ZONA[0] && p <= ZONA[1]) {
+      encestes++;
+      await tramo(INICIO, ARO, 95, 650);
+      await tramo(ARO, [ARO[0], 150], 0, 260);
+      texto = "¡Adentro!";
+    } else if (p < ZONA[0]) {
+      const x = INICIO[0] + (ARO[0] - INICIO[0]) * (p / ZONA[0]) * 0.85;
+      await tramo(INICIO, [x, 182], 70 + p * 40, 600);
+      texto = "Quedó corta.";
+    } else {
+      await tramo(INICIO, [258, 52], 100, 620);
+      await tramo([258, 52], [205, 182], 20, 420);
+      texto = "Rebotó en el tablero.";
+    }
+    marcador.textContent = `${texto} Encestes: ${encestes} de ${tiros}.`;
+    setTimeout(() => { poner(...INICIO); lanzando = false; boton.disabled = false; t0 = performance.now(); }, quieto ? 0 : 500);
+  };
+  boton.addEventListener("click", lanzar);
+  pelota.addEventListener("click", lanzar);
+})();
+</script>
 </body>
 </html>

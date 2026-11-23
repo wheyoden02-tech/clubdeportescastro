@@ -96,6 +96,10 @@ El sitio apunta a 100 en PageSpeed Insights. Al hacer cambios:
 - Todo `<img>` necesita `width` y `height`.
 - No agregues JavaScript de terceros. El script `beacon.min.js` que aparece en los informes viene de Cloudflare Web Analytics y se controla desde el panel de Cloudflare.
 
+## Página 404
+
+`public/404.html` es una página independiente: tiene sus propios estilos y un minijuego de tiro libre (script al final del archivo, sin dependencias). Una barra de fuerza va y viene; si se lanza en la zona verde (`ZONA` en el script), la pelota entra. Funciona con mouse, toque y teclado, y respeta "reducir movimiento". El juego vive solo en la 404 a propósito: la portada se mantiene sobria y rápida.
+
 ## Probar en local
 
 ```
