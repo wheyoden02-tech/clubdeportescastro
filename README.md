@@ -72,5 +72,5 @@ El sitio ya incluye robots.txt, sitemap.xml, la dirección canónica, datos estr
 
 Google tarda desde unos días hasta un par de semanas en mostrar la página en los resultados.
 
-Los hitos se redactaron a partir del artículo de [Club Deportes Castro](https://es.wikipedia.org/wiki/Club_Deportes_Castro) entregado para este proyecto. Los perfiles sociales se identificaron en la grabación proporcionada. La foto, el escudo y la animación de la camiseta provienen del material compartido. Las licencias de DM Sans y Archivo Narrow están en public/assets.
+Los hitos se redactaron a partir del artículo de [Club Deportes Castro](https://es.wikipedia.org/wiki/Club_Deportes_Castro) entregado para este proyecto. Los perfiles sociales se identificaron en la grabación proporcionada. La foto, el escudo y la animación de la camiseta provienen del material compartido. Las licencias de DM Sans y Archivo están en public/assets.
 

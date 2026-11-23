@@ -93,6 +93,7 @@ El sitio apunta a 100 en PageSpeed Insights. Al hacer cambios:
 - El dibujo de la cancha es `assets/cancha.svg` cargado como `<img>`. No lo vuelvas a incrustar como `<svg>` en el HTML: incrustado y girado le cuesta mucho más al procesador del celular.
 - Las dos fuentes se precargan con `fetchpriority="low"`, para que lleguen temprano sin quitarle velocidad a la foto principal. Quitar la precarga empeora el rendimiento, porque la página se redibuja cuando la fuente llega tarde.
 - Fuentes en WOFF2 recortadas a caracteres latinos (`python -m fontTools.subset`). Si agregas otra fuente, conviértela igual.
+- Tipografía: títulos en **Archivo** (`archivo.woff2`, variable recortada a ancho condensado 75 y pesos 600-900), con peso 850 en `h1` y `h2`. El título principal lleva una sombra sólida (`text-shadow` en verde muy oscuro #061e18), que le da cuerpo y repite la sombra de la foto del equipo. Textos corridos en **DM Sans**. Licencias en `assets/licencia-*.txt`.
 - Todo `<img>` necesita `width` y `height`.
 - No agregues JavaScript de terceros. El script `beacon.min.js` que aparece en los informes viene de Cloudflare Web Analytics y se controla desde el panel de Cloudflare.
 
