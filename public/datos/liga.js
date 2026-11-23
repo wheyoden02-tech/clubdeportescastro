@@ -116,14 +116,14 @@ window.LIGA = {
       "nombre": "BELTRAN, G."
     },
     {
-      "id": "664",
-      "numero": 55,
-      "nombre": "GONZALEZ, J."
-    },
-    {
       "id": "293",
       "numero": 9,
       "nombre": "CACERES, I."
+    },
+    {
+      "id": "664",
+      "numero": 55,
+      "nombre": "GONZALEZ, J."
     },
     {
       "id": "327",
