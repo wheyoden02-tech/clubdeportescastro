@@ -155,5 +155,6 @@ window.LIGA = {
       "numero": 77,
       "nombre": "BARRIA, Y."
     }
-  ]
+  ],
+  "temporada": 2026
 };

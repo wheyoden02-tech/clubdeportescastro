@@ -9,6 +9,11 @@ on:
 
 permissions:
   contents: write
+  issues: write
+
+env:
+  GH_TOKEN: ${{ github.token }}
+  RESUMEN: ${{ github.workspace }}/../resumen.md
 
 jobs:
   actualizar:
@@ -24,7 +29,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Leer la ficha del club en lnbchile.com
         run: python scripts/actualizar_datos_liga.py
-      - name: Guardar cambios
+      - name: Guardar cambios y avisar por correo
         run: |
           if git diff --quiet -- public/datos/liga.js; then
             echo "Sin datos nuevos."
@@ -32,10 +37,27 @@ jobs:
             git add public/datos/liga.js public/sitemap.xml
             git commit -m "Actualizar resultados y plantilla desde la LNB"
             git push
+            if [ -s "$RESUMEN" ]; then bash scripts/avisar.sh "$RESUMEN"; fi
           fi
+      # Al lanzarlo a mano ("Run workflow") siempre deja un aviso, para comprobar que los correos llegan.
+      - name: Aviso de prueba en ejecuciones manuales
+        if: github.event_name == 'workflow_dispatch' && success()
+        run: |
+          if [ -s "$RESUMEN" ]; then exit 0; fi
+          estado=$(python -c "
+          import json
+          t=open('public/datos/liga.js',encoding='utf-8').read(); d=json.loads(t.split('=',1)[1].strip().rstrip(';'))
+          p=d['partidos'][0] if d['partidos'] else None
+          print(f\"Último partido registrado: {p['fecha']} contra {p['rival']} ({p['castro']}-{p['rivalPuntos']}). Balance del torneo: {d['record']}. Jugadores en la plantilla: {len(d['plantilla'])}.\" if p else 'Aún no hay partidos registrados.')
+          ")
+          printf '%s\n\n%s\n\n%s\n' "**Prueba manual: el robot funciona y los avisos llegan.**" \
+            "Leyó la ficha de la liga sin problemas y no encontró datos nuevos. $estado" \
+            "Revisa la página: https://deportescastro.cl" > "$RUNNER_TEMP/prueba.md"
+          bash scripts/avisar.sh "$RUNNER_TEMP/prueba.md"
       # GitHub pausa las tareas programadas de un repositorio público sin actividad
       # durante 60 días. Fuera de temporada no hay resultados nuevos, así que si pasan
-      # 40 días sin commits se deja uno vacío para que la tarea siga activa sola.
+      # 40 días sin commits se deja uno vacío para que la tarea siga activa sola,
+      # y se avisa que el robot sigue funcionando.
       - name: Mantener activa la tarea fuera de temporada
         if: always()
         run: |
@@ -45,4 +67,17 @@ jobs:
           if [ "$dias" -ge 40 ]; then
             git commit --allow-empty -m "Mantener activa la actualización automática de datos de la liga"
             git push
+            datos=$(git log -1 --format=%cs -- public/datos/liga.js)
+            printf '%s\n\n%s\n' "**Revisión periódica: el robot sigue funcionando.**" \
+              "Revisa la ficha de la liga dos veces al día. No hubo datos nuevos en los últimos $dias días, lo normal fuera de temporada. Última actualización de datos: $datos." \
+              > "$RUNNER_TEMP/revision.md"
+            bash scripts/avisar.sh "$RUNNER_TEMP/revision.md"
           fi
+      - name: Avisar si algo falló
+        if: failure()
+        run: |
+          printf '%s\n\n%s\n\n%s\n' "**El robot no pudo actualizar los datos de la liga.**" \
+            "La página sigue mostrando los últimos datos buenos, así que nadie ve un error. Lo más probable es que la liga haya cambiado su página. Pídele a un agente que lo revise (las instrucciones están en AGENTS.md, sección Robot de datos de la liga)." \
+            "Detalle técnico: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            > "$RUNNER_TEMP/falla.md"
+          bash scripts/avisar.sh "$RUNNER_TEMP/falla.md" --una-vez

@@ -9,7 +9,7 @@ robots.txt reserva. Reglas:
 
 Uso: python scripts/actualizar_datos_liga.py [archivo_html_local]
 """
-import json, re, sys, urllib.request
+import json, os, re, sys, urllib.request
 from datetime import date
 from pathlib import Path
 
@@ -96,6 +96,7 @@ def main():
         "partidos": partidos or anterior.get("partidos", []),
         "plantilla": plantilla or anterior.get("plantilla", []),
     }
+    datos["temporada"] = calcular_temporada(datos, anterior)
     if datos == {k: anterior.get(k) for k in datos}:
         print("Sin cambios.")
         return
@@ -106,7 +107,64 @@ def main():
         xml = SITEMAP.read_text(encoding="utf-8")
         SITEMAP.write_text(re.sub(r"<lastmod>[^<]*</lastmod>", f"<lastmod>{date.today().isoformat()}</lastmod>", xml),
                            encoding="utf-8")
-    print(f"Actualizado: {len(datos['partidos'])} partidos, {len(datos['plantilla'])} jugadores, récord {datos['record']}.")
+    resumen = resumir_cambios(anterior, datos)
+    if resumen and os.environ.get("RESUMEN"):
+        Path(os.environ["RESUMEN"]).write_text(resumen, encoding="utf-8")
+    print(resumen or "Actualizado (sin cambios visibles en la página).")
+
+
+def anio(partido):
+    return int(partido["fecha"][:4])
+
+
+def calcular_temporada(datos, anterior):
+    """Año que se muestra sobre la plantilla. Normalmente es el del último partido, pero si la
+    liga publica una plantilla nueva antes del primer partido del año, se usa el año actual."""
+    temporada = max(anterior.get("temporada") or 0, anio(datos["partidos"][0]) if datos["partidos"] else 0)
+    ids = lambda lista: {j["id"] for j in lista or []}
+    if ids(datos["plantilla"]) - ids(anterior.get("plantilla")) and date.today().year > temporada:
+        temporada = date.today().year
+    return temporada or None
+
+
+def legible(nombre):
+    apellido, _, inicial = nombre.partition(",")
+    return (inicial.strip() + " " + apellido.strip().title()).strip()
+
+
+def resumir_cambios(anterior, datos):
+    """Explica en palabras simples qué cambió, para avisar al dueño del sitio."""
+    lineas = []
+    viejos = {p["enlace"] for p in anterior.get("partidos", [])}
+    nuevos = [p for p in reversed(datos["partidos"]) if p["enlace"] not in viejos]
+    if anterior.get("temporada") and datos["temporada"] and datos["temporada"] > anterior["temporada"]:
+        lineas.append(f"**Empezó la temporada {datos['temporada']}.** La página ya muestra el nuevo año.")
+    formato = lambda f: f"{int(f[8:10])}/{int(f[5:7])}/{f[:4]}"
+    for p in nuevos:
+        resultado = "ganó" if p["gano"] else "perdió"
+        lugar = "de local" if p["local"] else "de visita"
+        lineas.append(f"Nuevo partido ({formato(p['fecha'])}, {lugar}): Castro {resultado} "
+                      f"{p['castro']}-{p['rivalPuntos']} contra {p['rival']}.")
+    if anterior.get("record") and datos["record"] != anterior.get("record"):
+        lineas.append(f"Balance del torneo: {anterior['record']} → {datos['record']}.")
+    antes = {j["id"]: j for j in anterior.get("plantilla", [])}
+    ahora = {j["id"]: j for j in datos["plantilla"]}
+    llegan = [ahora[i] for i in ahora if i not in antes]
+    salen = [antes[i] for i in antes if i not in ahora]
+    if llegan:
+        lineas.append("Jugadores nuevos en la plantilla: " + ", ".join(f"#{j['numero']} {legible(j['nombre'])}" for j in llegan) + ".")
+        complementos = SALIDA.parent / "plantilla.js"
+        conocidos = set(re.findall(r'"(\d+)"\s*:', complementos.read_text(encoding="utf-8"))) if complementos.exists() else set()
+        sin_nombre = [j for j in llegan if j["id"] not in conocidos]
+        if sin_nombre:
+            lineas.append("Se muestran con el nombre abreviado de la liga (" + ", ".join(legible(j["nombre"]) for j in sin_nombre)
+                          + "). Es opcional: si quieres su nombre completo y posición, pídeselo a un agente.")
+    if salen:
+        lineas.append("Ya no aparecen en la ficha de la liga: " + ", ".join(legible(j["nombre"]) for j in salen) + ".")
+    if not lineas:
+        return ""
+    return "\n".join(["**Se actualizaron los datos de deportescastro.cl**", ""] + [f"- {l}" for l in lineas]
+                     + ["", "Revisa la página: https://deportescastro.cl"])
 
 
 if __name__ == "__main__":

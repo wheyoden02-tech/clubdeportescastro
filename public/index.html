@@ -36,7 +36,76 @@
   </script>
   <link rel="icon" href="assets/escudo.jpg">
   <link rel="preload" href="assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="estilos.css">
+  <style>
+@font-face{font-family:"Archivo Narrow";src:url(assets/archivo-narrow.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"DM Sans";src:url(assets/dm-sans.woff2) format("woff2");font-weight:100 1000;font-display:swap}
+:root{--forest:#082f25;--ink:#102e24;--acid:#d2f75b;--paper:#f8f8ef;--line:#bdc8b8;--head:"Archivo Narrow","Arial Narrow",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.62 "DM Sans",sans-serif;font-optical-sizing:auto}.wrap{width:min(1240px,89%);margin:auto}a{color:inherit;text-decoration:none}a:focus-visible,input:focus-visible{outline:3px solid #e68713;outline-offset:5px}.skip{position:absolute;left:1em;top:-8em;background:white;padding:.7em;z-index:10}.skip:focus{top:1em}
+header,.hero,footer{background:var(--forest);color:#fff}.nav,.brand,nav,figcaption,footer>div{display:flex;align-items:center}.nav{min-height:82px;justify-content:space-between;border-bottom:1px solid #ffffff33}.brand{gap:12px;font:700 .92rem/.99 var(--head);letter-spacing:.08em}.brand strong{font-size:1.55rem;letter-spacing:.035em}.crest{width:48px;height:48px;border-radius:50%;overflow:hidden;display:grid;place-items:center}.crest img{width:110%;max-width:none}.brand:hover,nav a:hover{color:var(--acid)}nav{gap:2rem;font-size:.96rem}
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 75% 68%,#215b40 0%,#103e2d 38%,var(--forest) 72%)}.lead{position:relative;display:grid;grid-template-columns:.82fr 1.18fr;gap:6%;align-items:center;padding:clamp(58px,6vw,98px) 0}.hero::before{content:"";position:absolute;inset:-55% -20%;background:url(assets/parquet.svg) repeat;background-size:620px 170px;transform:rotate(-13deg);opacity:.4;pointer-events:none}.court{position:absolute;pointer-events:none;width:94%;height:auto;left:2%;top:51%;transform:translateY(-50%) rotate(-13deg);fill:none;stroke:#a8cb88;stroke-opacity:.41;stroke-width:1.6}.hero{border-bottom:5px solid var(--acid)}.tag,figcaption{font-size:.77rem;font-weight:700;letter-spacing:.13em}.tag{display:flex;align-items:center;gap:10px;color:var(--acid);margin:0 0 14px}.tag.dark{color:#336044}h1,h2,h3,p,figure{margin:0}h1,h2,h3,.timeline strong{font-family:var(--head);font-weight:700}h1{font-size:clamp(5.1rem,8.6vw,9.1rem);line-height:.85;letter-spacing:-.035em}h1 em{color:var(--acid);font-style:normal}.summary{max-width:390px;margin:25px 0;color:#e1eae2;font-size:1.07rem}.button{display:inline-block;font-weight:bold;color:#163121;background:var(--acid);padding:12px 21px;border-radius:4px}.button:hover{background:white}.team{position:relative;transform:rotate(-1.5deg);background:var(--paper);padding:8px;color:var(--ink);box-shadow:9px 11px 0 #061e1873}.team img{width:100%;height:auto;display:block}.team figcaption{justify-content:space-between;gap:6px;padding:10px 5px 3px;font-size:.75rem}
+.section{padding:clamp(55px,6vw,90px) 0}h2{font-size:clamp(2.9rem,4.6vw,4.8rem);line-height:.98;letter-spacing:-.027em}.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:4%;margin-top:36px}.timeline article{border-top:2px solid #42674b;padding-top:12px}.timeline strong{font-size:3.4rem;line-height:1.1;color:#2d6842}.timeline h3{font-size:1.55rem;margin:7px 0}.timeline p,.kit-text>p:not(.tag),.social p:not(.tag){color:#415349}.kits{background:#e7edda;border-block:1px solid var(--line)}.kit-inner{display:grid;grid-template-columns:1fr 1fr;gap:7%;padding:40px 0;align-items:center}.kit-text>p:not(.tag),.social p:not(.tag){margin-top:18px;max-width:420px}.display{display:grid;place-items:center}.giro{display:block;width:auto;height:clamp(330px,34vw,450px);max-width:100%;object-fit:contain}.social{display:grid;grid-template-columns:1fr 1fr;gap:7%;align-items:center}.social-links a{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding:16px 0}.social-links a:last-child{border-bottom:1px solid var(--line)}.social-links a:hover b{text-decoration:underline}.social-links b{font:700 1.6rem var(--head)}.social-links span{font-size:.9rem}footer>div{justify-content:space-between;gap:14px;padding:22px 0;font-size:.9rem}
+@media(max-width:760px){.wrap{width:89%}.nav{min-height:74px}nav{gap:13px;font-size:.87rem}.brand{gap:6px}.crest{width:38px;height:38px}.lead{grid-template-columns:1fr;gap:35px;padding:40px 0}.intro{max-width:530px}h1{font-size:clamp(5rem,16vw,7.3rem)}.summary{margin:18px 0}.team{width:98%;justify-self:center}.timeline,.kit-inner,.social{grid-template-columns:1fr;gap:26px}.timeline article{display:grid;grid-template-columns:77px 1fr;gap:2px 12px}.timeline strong{grid-row:span 2;font-size:2.45rem}.timeline h3{margin:0}.giro{height:340px}.court{width:170%;left:-36%;top:45%;transform:translateY(-50%) rotate(-68deg)}.section{padding:49px 0}footer>div{align-items:flex-start;flex-direction:column;gap:2px}}
+@media(max-width:360px){nav{gap:8px}.brand{font-size:.73rem}.crest{width:32px;height:32px}.team figcaption{font-size:.64rem}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+h1{font-size:clamp(5rem,8vw,8.25rem);letter-spacing:-.055em;line-height:.9}
+h2{font-family:"DM Sans",sans-serif;font-weight:640;font-size:clamp(2.55rem,4vw,4.25rem);line-height:1.04;letter-spacing:-.055em}
+h3,.social-links b{letter-spacing:-.024em}.timeline h3{font:650 1.3rem/1.22 "DM Sans",sans-serif}.timeline strong{font-variant-numeric:lining-nums;letter-spacing:-.055em}
+nav{font-weight:550}.tag,figcaption{font-weight:650}.kit-inner{padding-block:30px}
+@media(max-width:760px){h1{font-size:clamp(4.55rem,16vw,7rem)}.hero::before{transform:rotate(22deg)}.kit-inner{gap:12px;padding-block:40px}}
+@media(max-width:390px){.nav{width:94%}.brand{font-size:.72rem;letter-spacing:.025em}.brand strong{font-size:1.2rem}.brand .crest{width:30px;height:30px}nav{gap:9px;font-size:.82rem}}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px 40px;flex-wrap:wrap;margin-bottom:30px}
+.record{font:650 1rem "DM Sans",sans-serif;color:#2d6842;font-variant-numeric:tabular-nums}
+.games{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.game a{display:grid;grid-template-columns:auto 1fr;grid-template-areas:"badge info" "score score";gap:10px 12px;align-items:center;height:100%;padding:16px;border:1px solid var(--line);border-radius:6px;background:#fff;transition:border-color .2s,transform .2s}
+.game a:hover{border-color:#2d6842;transform:translateY(-2px)}
+.game-badge{grid-area:badge;width:30px;height:30px;display:grid;place-items:center;border-radius:4px;font:700 .85rem "DM Sans",sans-serif;color:#fff;background:#8a958d}
+.won .game-badge{background:#1d7a45}
+.game-info{grid-area:info;display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.game-info b{font-weight:650;font-size:.98rem}
+.game-info small{color:#5b6c61;font-size:.8rem}
+.game-score{grid-area:score;font:700 2rem/1 var(--head);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.lost .game-score{color:#5b6c61}
+.games-foot{display:flex;justify-content:space-between;gap:10px 30px;flex-wrap:wrap;margin-top:20px;color:#415349;font-size:.92rem}
+.text-link{font-weight:650;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.text-link:hover{color:#1d7a45}
+.roster{background:var(--forest);color:#fff;padding:clamp(55px,6vw,90px) 0}
+.roster .text-link:hover{color:var(--acid)}
+.coach{display:flex;flex-direction:column;font-size:.77rem;font-weight:650;letter-spacing:.13em;text-transform:uppercase;color:#a9c3b3}
+.coach b{font:650 1.3rem "DM Sans",sans-serif;letter-spacing:-.01em;text-transform:none;color:#fff;margin-top:2px}
+.players{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;padding:1px}
+.player{display:grid;grid-template-columns:52px 1fr;grid-template-rows:auto auto;column-gap:10px;align-content:center;min-height:78px;padding:12px 14px;box-shadow:0 0 0 1px #ffffff26}
+.player-num{grid-row:span 2;align-self:center;font:700 2.1rem/1 var(--head);color:var(--acid);font-variant-numeric:tabular-nums}
+.player b{font-weight:600;line-height:1.25;align-self:end}
+.player small{color:#a9c3b3;font-size:.8rem}
+.player:not(:has(small)) b{grid-row:span 2;align-self:center}
+.roster-foot{margin-top:18px;font-size:.85rem;color:#a9c3b3}
+.honours{margin-top:56px}
+.honours h3{font:650 1.3rem/1.22 "DM Sans",sans-serif;margin-bottom:16px}
+.honours ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.honours li{display:flex;flex-direction:column;padding:16px;border-top:4px solid #8fa596;background:#fff;border-radius:0 0 6px 6px}
+.honours li.gold{border-top-color:#c99a1b}
+.honours li b{font:700 1.6rem/1.05 var(--head);letter-spacing:-.02em}
+.honours li span{margin-top:6px;font-weight:600;line-height:1.3}
+.honours li small{margin-top:auto;padding-top:8px;color:#5b6c61;font-size:.82rem}
+.kit-text>p:not(.tag){margin-top:18px;max-width:420px;color:#415349}
+.buy{margin-top:22px}
+@media(max-width:1000px){.games{grid-template-columns:repeat(3,1fr)}.honours ul{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.games{grid-template-columns:1fr}.game a{grid-template-columns:auto 1fr auto;grid-template-areas:"badge info score";padding:12px 14px}.game-score{font-size:1.5rem}.honours ul{grid-template-columns:1fr 1fr}.players{grid-template-columns:1fr 1fr}.player{grid-template-columns:40px 1fr;padding:10px 12px;min-height:68px}.player-num{font-size:1.6rem}.player b{font-size:.92rem}}
+@media(max-width:420px){.honours ul{grid-template-columns:1fr}.player{grid-template-columns:30px 1fr;column-gap:8px;padding:10px}.player-num{font-size:1.35rem}.player b{font-size:.86rem}}@media(max-width:330px){.players{grid-template-columns:1fr}}
+.tag{text-transform:uppercase}
+.credit{color:#a9c3b3}.credit a{color:#fff;font-weight:650;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}.credit a:hover{color:var(--acid)}
+.lost-page{min-height:100vh;display:flex;flex-direction:column}.lost-page footer{margin-top:auto}
+.lost{flex:1;display:grid;align-items:center;border-bottom:0}
+.lost-inner{position:relative;padding:clamp(70px,10vw,130px) 0}
+.lost-code{position:absolute;right:0;top:50%;transform:translateY(-50%);font:700 clamp(9rem,26vw,22rem)/.8 var(--head);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px #d2f75b59;pointer-events:none;user-select:none}
+.lost .summary{max-width:440px}
+.ball{position:absolute;width:clamp(70px,9vw,120px);right:9%;bottom:10%;fill:#e68713;stroke:#2a1606;stroke-width:3;pointer-events:none;animation:bote 1.6s cubic-bezier(.5,0,.5,1) infinite alternate}
+@keyframes bote{from{transform:translateY(-38px) rotate(-12deg)}to{transform:translateY(0) rotate(14deg)}}
+@media(max-width:760px){.lost-code{top:auto;bottom:-10px;transform:none;opacity:.7}.ball{right:6%;bottom:auto;top:24px}}
+@media(prefers-reduced-motion:reduce){.ball{animation:none}}
+.giro{aspect-ratio:440/768;background:#e7edda;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
+.crest img{height:auto}
+#partidos,.roster,#historia,.kits,.social{content-visibility:auto;contain-intrinsic-size:auto 700px}
+  </style>
 </head>
 <body id="inicio">
 <a class="skip" href="#principal">Ir al contenido</a>
@@ -90,11 +159,11 @@
 </ul></div></section>
 <section class="kits" id="camisetas"><div class="wrap kit-inner">
 <div class="kit-text">
-  <p class="tag dark">TEMPORADA 2026/27</p><h2>La camiseta<br>de Castro</h2>
+  <p class="tag dark">CAMISETA OFICIAL</p><h2>La camiseta<br>de Castro</h2>
   <p>Disponible en verde y en blanco. Los pedidos y las tallas se coordinan con el club por mensaje directo en Instagram.</p>
   <a class="button buy" href="https://ig.me/m/clubdeportescastro" rel="noopener">Pedir por Instagram</a>
 </div>
-<div class="display"><video class="giro" data-src="assets/camiseta-giro.mp4" poster="assets/camiseta-poster.webp" muted loop playsinline preload="none" width="440" height="768" aria-label="La camiseta número 8 de Deportes Castro gira y cambia de verde a blanco."></video></div>
+<div class="display"><video class="giro" data-src="assets/camiseta-giro.mp4" data-poster="assets/camiseta-poster.webp" muted loop playsinline preload="none" width="440" height="768" aria-label="La camiseta número 8 de Deportes Castro gira y cambia de verde a blanco."></video></div>
 </div></section>
 <section class="wrap section social" id="redes"><div><h2>Redes del club</h2></div><div class="social-links"><a href="https://www.instagram.com/clubdeportescastro/"><b>Instagram</b><span>@clubdeportescastro</span></a><a href="https://www.facebook.com/profile.php?id=100064585005667"><b>Facebook</b><span>Club Deportes Castro</span></a></div></section>
 </main><footer><div class="wrap"><span>Club Deportes Castro</span><span>Castro · Isla de Chiloé · Chile</span><span class="credit">Página diseñada por <a href="https://sinpausas.cl" rel="noopener">Sin Pausas</a></span></div></footer>

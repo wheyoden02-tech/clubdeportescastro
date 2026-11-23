@@ -31,7 +31,7 @@
     const record = document.getElementById("record");
     if (record && resultados.record) {
       const [g, pe] = resultados.record.split("-");
-      record.textContent = g + " ganados · " + pe + " perdidos";
+      record.textContent = "Balance del torneo: " + g + " ganados · " + pe + " perdidos";
     }
     const aviso = document.getElementById("aviso-temporada");
     if (aviso && terminada) {
@@ -63,7 +63,8 @@
       grilla.append(li);
     }
     const t = document.getElementById("titulo-plantilla-sub");
-    if (t && ultimo) t.textContent = "Temporada " + ultimo.getFullYear();
+    const anio = resultados.temporada || (ultimo && ultimo.getFullYear());
+    if (t && anio) t.textContent = "Temporada " + anio;
     const dt = document.getElementById("entrenador");
     if (dt && extra.entrenador) dt.textContent = extra.entrenador;
     else if (dt) dt.parentElement.hidden = true;
@@ -72,17 +73,24 @@
     if (s) s.hidden = true;
   }
 
-  // La camiseta (video) se descarga recién cuando el visitante se acerca a esa sección,
-  // para no competir con la carga inicial. Con "reducir movimiento" se queda en la imagen fija.
+  // La camiseta (video) y su imagen fija se descargan recién cuando el visitante se acerca a esa
+  // sección, para no competir con la carga inicial. Con "reducir movimiento" se queda en la imagen fija.
   const giro = document.querySelector("video.giro");
-  if (giro && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        if (!giro.getAttribute("src")) giro.src = giro.dataset.src;
-        giro.play().catch(() => {});
-      } else if (giro.getAttribute("src")) {
-        giro.pause();
-      }
-    }, { rootMargin: "300px 0px" }).observe(giro);
+  if (giro) {
+    const quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const activar = () => {
+      if (!giro.poster) giro.poster = giro.dataset.poster;
+      if (quieto) return;
+      if (!giro.getAttribute("src")) giro.src = giro.dataset.src;
+      giro.play().catch(() => {});
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) activar();
+        else if (giro.getAttribute("src")) giro.pause();
+      }, { rootMargin: "300px 0px" }).observe(giro);
+    } else {
+      activar();
+    }
   }
 })();

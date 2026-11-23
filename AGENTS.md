@@ -9,11 +9,12 @@ Sitio estático para deportescastro.cl, el club de básquetbol de Castro, Chilo�
 | Archivo | Para qué sirve |
 | --- | --- |
 | `public/index.html` | Estructura y textos de la página |
-| `public/estilos.css` | Diseño |
+| `<style>` dentro de `index.html` y de `404.html` | Diseño. Va incrustado a propósito para que la página cargue más rápido: **no hay archivo CSS aparte**. Cada página tiene su copia; si cambias colores o tipografías, cámbialos en ambas (en `404.html` las rutas van con `/` inicial, por ejemplo `url(/assets/...)`) |
 | `public/app.js` | Arma en el navegador las secciones de partidos y plantilla a partir de los archivos de datos |
 | `public/datos/liga.js` | Últimos partidos, récord y lista de jugadores sacados de la LNB. **Lo genera un robot: no editar a mano** |
 | `public/datos/plantilla.js` | Complementos manuales y opcionales: entrenador, más nombres completos y posiciones por jugador |
 | `scripts/actualizar_datos_liga.py` | Robot que lee la ficha pública del club en la LNB y regenera `liga.js` |
+| `scripts/avisar.sh` | Comenta en el issue "Bitácora del robot de datos" y menciona al dueño, para que GitHub le envíe un correo |
 | `.github/workflows/datos-liga.yml` | Ejecuta el robot en GitHub Actions dos veces al día |
 | `public/assets/camiseta-giro.mp4` | Video de la camiseta girando, ya compuesto sobre el color de fondo de su sección (#e7edda) |
 
@@ -62,7 +63,21 @@ window.PLANTILLA = {
 - Los nombres de los rivales salen del diccionario `CODIGOS` del script. Si aparece un código desconocido (por ejemplo "XYZ"), se muestra tal cual: agrégalo al diccionario.
 - La ficha pública no trae los próximos partidos. Para mostrarlos, el club tendría que conseguir acceso oficial con la LNB (secretaria@lnbchile.com). Si lo consiguen, la clave va como secreto de GitHub Actions, nunca dentro de `public/`.
 - GitHub pausa las tareas programadas de repositorios públicos que pasan 60 días sin actividad. El último paso del workflow deja un commit vacío ("Mantener activa la actualización automática de datos de la liga") si pasan 40 días sin commits. No lo quites: el dueño no quiere tener que reactivar nada a mano.
-- `app.js` muestra un aviso de temporada terminada cuando el último partido tiene más de 30 días.
+- **Avisos por correo:** el robot comenta en el issue "Bitácora del robot de datos" (lo crea si no existe) mencionando al dueño del repositorio, y GitHub le envía cada comentario por correo. Avisa en cuatro casos: datos nuevos (partido, balance o jugadores, explicado en palabras simples), inicio de temporada, revisión periódica cada 40 días sin cambios y fallas (estas, una sola vez hasta que haya otro comentario). No escribas correos ni datos personales en el repositorio: es público.
+- `liga.js` incluye `temporada`: el año del último partido, o el año actual si la liga publica jugadores nuevos antes del primer partido del año. `app.js` lo usa para el subtítulo "Temporada AAAA" de la plantilla.
+
+### Textos que cambian solos (no los escribas a mano con fechas)
+
+| Texto | Cómo se actualiza |
+| --- | --- |
+| Lista de últimos partidos | Robot, desde la ficha de la LNB |
+| "Balance del torneo: X ganados · Y perdidos" | Robot (récord de la ficha) |
+| "Sin partidos en las últimas semanas…" | `app.js`: aparece si el último partido tiene más de 30 días y desaparece solo. No menciona años a propósito: entre Apertura y Clausura también hay pausas de más de un mes |
+| "Temporada AAAA" sobre la plantilla | Campo `temporada` de `liga.js` |
+| Jugadores | Robot; nombres completos opcionales en `plantilla.js` |
+| Fecha del sitemap | Robot, cuando cambian los datos |
+
+No pongas años fijos en textos que deban seguir siendo ciertos con el tiempo (por eso la camiseta dice "CAMISETA OFICIAL" y no la temporada). Los textos históricos (línea de tiempo y palmarés) sí son fijos: el palmarés solo cambia si el club gana un título, y eso se edita a mano en `index.html`.
 
 ## Animación de la camiseta
 

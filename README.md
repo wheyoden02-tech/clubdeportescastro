@@ -45,7 +45,7 @@ En [GitHub](https://github.com/wheyoden02-tech/clubdeportescastro), comprueba qu
 
 ## Cambios posteriores
 
-Edita public/index.html para cambiar textos y enlaces, public/estilos.css para el diseño y public/assets para el material visual. Cada push a main activa una nueva publicación en Cloudflare. El sitio quedó publicado como Worker de archivos estáticos (proyecto **clubdeportescastro**). wrangler.jsonc indica ese nombre y hace que cualquier dirección que no exista muestre public/404.html; no cambies el nombre que aparece ahí.
+Edita public/index.html para cambiar textos, enlaces y diseño (los estilos van dentro de la misma página, en la etiqueta style, para que cargue más rápido) y public/assets para el material visual. Cada push a main activa una nueva publicación en Cloudflare. El sitio quedó publicado como Worker de archivos estáticos (proyecto **clubdeportescastro**). wrangler.jsonc indica ese nombre y hace que cualquier dirección que no exista muestre public/404.html; no cambies el nombre que aparece ahí.
 
 ### Partidos y plantilla (automático)
 
@@ -55,6 +55,7 @@ Dos veces al día, GitHub ejecuta scripts/actualizar_datos_liga.py. El script le
 - Si al empezar una temporada la ficha viene vacía, la web conserva los datos anteriores.
 - Si la liga rediseña su página y el lector deja de entenderla, no se modifica nada y GitHub envía un correo avisando del error.
 - GitHub pausa las tareas programadas de un repositorio que pasa 60 días sin cambios. Para evitarlo, la misma tarea deja un commit vacío cuando pasan 40 días sin ninguno, así que sigue activa sola entre temporadas.
+- **Avisos por correo:** el robot comenta en el issue **Bitácora del robot de datos** del repositorio y te menciona, así que GitHub te envía cada aviso al correo de tu cuenta. Avisa cuando hay datos nuevos (por ejemplo "Nuevo partido: Castro ganó 87-76 contra Las Ánimas"), cuando empieza una temporada, en una revisión periódica fuera de temporada ("el robot sigue funcionando") y si algo falla. Para confirmar a qué correo llegan, revisa en GitHub **Settings → Notifications** que esté activado el correo para "Participating, @mentions and custom".
 - La ficha pública solo trae partidos ya jugados. Para mostrar el próximo partido, el club debe pedir a la LNB acceso oficial a su calendario (API o widget).
 
 Configuración, ya hecha: en **Settings → Actions → General → Workflow permissions** está activado **Read and write permissions**. Para forzar una actualización, entra a **Actions → Actualizar datos de la liga → Run workflow**.
