@@ -16,7 +16,7 @@
 <a class="skip" href="#principal">Ir al contenido</a>
 <header><div class="wrap nav">
   <a class="brand" href="#inicio"><span class="crest"><img src="assets/escudo.jpg" alt=""></span><span>CLUB DEPORTES<br><strong>CASTRO</strong></span></a>
-  <nav aria-label="Principal"><a href="#historia">Historia</a><a href="#camisetas">Camisetas</a><a href="#redes">Redes</a></nav>
+  <nav aria-label="Principal"><a href="#partidos">Partidos</a><a href="#plantilla">Plantilla</a><a href="#historia">Historia</a><a href="#camisetas">Camiseta</a></nav>
 </div></header>
 <main id="principal">
 <section class="hero" aria-labelledby="titulo"><svg class="court" viewBox="0 0 908 492" aria-hidden="true" focusable="false">
@@ -38,18 +38,39 @@
   <a class="button" href="#historia">Historia del club</a></div>
   <figure class="team"><div class="image-frame"><img src="assets/equipo.webp" alt="Jugadores y cuerpo técnico de Deportes Castro reunidos bajo el aro, con la camiseta verde." width="960" height="640"></div><figcaption><span>CLUB DEPORTES CASTRO</span><span>CHILOÉ, CHILE</span></figcaption></figure>
 </div></section>
+<section id="partidos" class="wrap section games-section" aria-labelledby="titulo-partidos">
+<div class="section-head"><div><p class="tag dark">LIGA NACIONAL DE BÁSQUETBOL</p><h2 id="titulo-partidos">Últimos partidos</h2></div><p class="record" id="record"></p></div>
+<ol class="games" id="lista-partidos"></ol>
+<p class="games-foot"><span id="aviso-temporada" hidden></span><a class="text-link" href="https://lnbchile.com/liga/uno/calendario" rel="noopener">Calendario oficial de la liga</a></p>
+</section>
+<section class="roster" id="plantilla" aria-labelledby="titulo-plantilla"><div class="wrap">
+<div class="section-head"><div><p class="tag" id="titulo-plantilla-sub">PLANTILLA</p><h2 id="titulo-plantilla">Los Leones</h2></div><p class="coach">Entrenador<b id="entrenador"></b></p></div>
+<ol class="players" id="lista-plantilla"></ol>
+<p class="roster-foot">Datos de la <a class="text-link" href="https://lnbchile.com/liga/uno/equipos/17" rel="noopener">ficha oficial del club en la LNB</a></p>
+</div></section>
 <section id="historia" class="wrap section"><h2>Historia del club</h2>
 <div class="timeline">
 <article><strong>2003</strong><h3>Fundación</h3><p>El club se fundó el 12 de febrero. En 2004 jugó por primera vez en la Dimayor.</p></article>
 <article><strong>2010</strong><h3>Primera Libsur</h3><p>Castro ganó la Libsur al derrotar a Deportes Victoria en la final.</p></article>
 <article><strong>2012</strong><h3>Campeón de Chile</h3><p>Boston College y Castro empataron a 85 en el cuarto partido de la final. En el alargue, Castro ganó 97 a 92 y se quedó con la Liga Nacional.</p></article>
-</div></section>
+</div>
+<div class="honours" aria-labelledby="titulo-palmares"><h3 id="titulo-palmares">Palmarés</h3>
+<ul>
+<li class="gold"><b>Campeón</b><span>Liga Nacional de Básquetbol</span><small>2011-12</small></li>
+<li class="gold"><b>Campeón</b><span>Libsur</span><small>2010</small></li>
+<li><b>Subcampeón</b><span>Liga Nacional de Básquetbol</span><small>2014-15</small></li>
+<li><b>Subcampeón</b><span>Copa Chile</span><small>2018</small></li>
+<li><b>4 títulos</b><span>Libsur formativas sub-15</span><small>2018 · 2019 · 2022 · 2023</small></li>
+</ul></div></section>
 <section class="kits" id="camisetas"><div class="wrap kit-inner">
 <div class="kit-text">
   <p class="tag dark">TEMPORADA 2026/27</p><h2>La camiseta<br>de Castro</h2>
+  <p>Disponible en verde y en blanco. Los pedidos y las tallas se coordinan con el club por mensaje directo en Instagram.</p>
+  <a class="button buy" href="https://ig.me/m/clubdeportescastro" rel="noopener">Pedir por Instagram</a>
 </div>
 <div class="display"><img class="giro" src="assets/camiseta-giro.webp" alt="La camiseta número 8 de Deportes Castro gira y cambia de verde a blanco." width="308" height="538"></div>
 </div></section>
 <section class="wrap section social" id="redes"><div><h2>Redes del club</h2></div><div class="social-links"><a href="https://www.instagram.com/clubdeportescastro/"><b>Instagram</b><span>@clubdeportescastro</span></a><a href="https://www.facebook.com/profile.php?id=100064585005667"><b>Facebook</b><span>Club Deportes Castro</span></a></div></section>
 </main><footer><div class="wrap"><span>Club Deportes Castro</span><span>Castro · Isla de Chiloé · Chile</span></div></footer>
+<script src="datos/resultados.js" defer></script><script src="datos/plantilla.js" defer></script><script src="app.js" defer></script>
 </body></html>
