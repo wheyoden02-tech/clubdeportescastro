@@ -1,34 +1,29 @@
-// PLANTILLA DEL CLUB
-// Para actualizarla, cambia solo lo que está entre comillas o los números y guarda.
-// Cada jugador va en una línea: { numero: 8, nombre: "Nombre Apellido", posicion: "Base" },
-// La posición es opcional. Si no la sabes, borra esa parte: { numero: 8, nombre: "Nombre Apellido" },
+// COMPLEMENTOS DE LA PLANTILLA (opcional)
+// La lista de jugadores se actualiza sola desde la ficha oficial de la LNB (public/datos/liga.js).
+// La liga solo entrega el número y el nombre abreviado ("ALVAREZ, N."). Este archivo agrega:
+//   - entrenador: la liga no lo publica en la ficha.
+//   - nombres: nombre completo con tildes y posición, usando el identificador del jugador en la
+//     LNB (el "id" que aparece en liga.js). Un jugador sin entrada aquí se muestra como "N. Alvarez".
+// Las entradas de jugadores que ya no están en el club no molestan: simplemente no se usan.
 // Posiciones: Base, Escolta, Alero, Ala-pívot, Pívot.
 
 window.PLANTILLA = {
-  titulo: "Jugaron la temporada 2026",
-  fuente: "https://lnbchile.com/liga/uno/equipos/17",
   entrenador: "Ángel Labrín Barría",
-  jugadores: [
-    { numero: 1, nombre: "Marco Ugalde Gazzo", posicion: "Base" },
-    { numero: 5, nombre: "Emilio Maldonado Cadín", posicion: "Base" },
-    { numero: 6, nombre: "José Ignacio Sepúlveda Ulloa", posicion: "Base" },
-    { numero: 7, nombre: "Gabriel Beltrán Peña", posicion: "Ala-pívot" },
-    { numero: 7, nombre: "C. Collins" },
-    { numero: 9, nombre: "Ignacio Cáceres Cerda", posicion: "Ala-pívot" },
-    { numero: 9, nombre: "F. Vera" },
-    { numero: 10, nombre: "Pablo Niklitschek Sarrat", posicion: "Escolta" },
-    { numero: 11, nombre: "Augusto Barbieri", posicion: "Ala-pívot" },
-    { numero: 12, nombre: "Nicolás Álvarez Valenzuela", posicion: "Escolta" },
-    { numero: 13, nombre: "M. Soto" },
-    { numero: 15, nombre: "Gianfranco Grafals" },
-    { numero: 20, nombre: "Diego Barría Roa", posicion: "Base" },
-    { numero: 21, nombre: "Halen Aragón Rodríguez", posicion: "Ala-pívot" },
-    { numero: 24, nombre: "E. Crespi" },
-    { numero: 25, nombre: "Ricardo Armijo Lagos", posicion: "Alero" },
-    { numero: 28, nombre: "Kevin Ortega Constanzo", posicion: "Base" },
-    { numero: 30, nombre: "Nick Farrar", posicion: "Pívot" },
-    { numero: 42, nombre: "Marcell McCreary", posicion: "Escolta" },
-    { numero: 55, nombre: "J. González" },
-    { numero: 77, nombre: "Y. Barría" },
-  ],
+  nombres: {
+    "418": { nombre: "Marco Ugalde Gazzo", posicion: "Base" },
+    "185": { nombre: "Emilio Maldonado Cadín", posicion: "Base" },
+    "327": { nombre: "José Ignacio Sepúlveda Ulloa", posicion: "Base" },
+    "44": { nombre: "Gabriel Beltrán Peña", posicion: "Ala-pívot" },
+    "293": { nombre: "Ignacio Cáceres Cerda", posicion: "Ala-pívot" },
+    "358": { nombre: "Pablo Niklitschek Sarrat", posicion: "Escolta" },
+    "628": { nombre: "Augusto Barbieri", posicion: "Ala-pívot" },
+    "416": { nombre: "Nicolás Álvarez Valenzuela", posicion: "Escolta" },
+    "629": { nombre: "Gianfranco Grafals" },
+    "19": { nombre: "Diego Barría Roa", posicion: "Base" },
+    "479": { nombre: "Halen Aragón Rodríguez", posicion: "Ala-pívot" },
+    "292": { nombre: "Ricardo Armijo Lagos", posicion: "Alero" },
+    "196": { nombre: "Kevin Ortega Constanzo", posicion: "Base" },
+    "676": { nombre: "Nick Farrar", posicion: "Pívot" },
+    "689": { nombre: "Marcell McCreary", posicion: "Escolta" },
+  },
 };

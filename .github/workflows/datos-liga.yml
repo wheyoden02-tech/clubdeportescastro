@@ -1,4 +1,4 @@
-name: Actualizar resultados
+name: Actualizar datos de la liga
 
 on:
   schedule:
@@ -23,14 +23,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Leer la ficha del club en lnbchile.com
-        run: python scripts/actualizar_resultados.py
+        run: python scripts/actualizar_datos_liga.py
       - name: Guardar cambios
         run: |
-          if git diff --quiet -- public/datos/resultados.js; then
-            echo "Sin resultados nuevos."
+          if git diff --quiet -- public/datos/liga.js; then
+            echo "Sin datos nuevos."
           else
-            git add public/datos/resultados.js
-            git commit -m "Actualizar resultados desde la LNB"
+            git add public/datos/liga.js public/sitemap.xml
+            git commit -m "Actualizar resultados y plantilla desde la LNB"
             git push
           fi
       # GitHub pausa las tareas programadas de un repositorio público sin actividad
@@ -43,6 +43,6 @@ jobs:
           dias=$(( ($(date +%s) - ultimo) / 86400 ))
           echo "Días desde el último commit: $dias"
           if [ "$dias" -ge 40 ]; then
-            git commit --allow-empty -m "Mantener activa la actualización automática de resultados"
+            git commit --allow-empty -m "Mantener activa la actualización automática de datos de la liga"
             git push
           fi

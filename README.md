@@ -47,20 +47,29 @@ En [GitHub](https://github.com/wheyoden02-tech/clubdeportescastro), comprueba qu
 
 Edita public/index.html para cambiar textos y enlaces, public/estilos.css para el diseño y public/assets para el material visual. Cada push a main activa una nueva publicación en Pages una vez que esté conectado.
 
-### Plantilla (una vez por temporada)
+### Partidos y plantilla (automático)
 
-Toda la plantilla está en **public/datos/plantilla.js**. En GitHub, abre ese archivo, pulsa el lápiz (Edit), cambia los nombres, números, posiciones o el entrenador y guarda con **Commit changes**. Pages publica el cambio en uno o dos minutos. El archivo explica el formato en sus primeras líneas, y no hace falta tocar el diseño.
+Dos veces al día, GitHub ejecuta scripts/actualizar_datos_liga.py. El script lee la [ficha pública del club en la LNB](https://lnbchile.com/liga/uno/equipos/17) y actualiza public/datos/liga.js con los últimos 5 partidos, el récord y la lista de jugadores. Si hay cambios, los guarda y Pages los publica. No hay que hacer nada.
 
-### Últimos partidos (automático)
+- La liga entrega los nombres abreviados ("ALVAREZ, N."). En **public/datos/plantilla.js** se pueden agregar, de forma opcional, el nombre completo y la posición de cada jugador, además del entrenador, que la liga no publica. Un jugador sin esos datos se muestra igual, como "N. Alvarez". Para hacer este cambio con un agente de IA, basta con pedírselo: las instrucciones están en AGENTS.md.
+- Si al empezar una temporada la ficha viene vacía, la web conserva los datos anteriores.
+- Si la liga rediseña su página y el lector deja de entenderla, no se modifica nada y GitHub envía un correo avisando del error.
+- GitHub pausa las tareas programadas de un repositorio que pasa 60 días sin cambios. Para evitarlo, la misma tarea deja un commit vacío cuando pasan 40 días sin ninguno, así que sigue activa sola entre temporadas.
+- La ficha pública solo trae partidos ya jugados. Para mostrar el próximo partido, el club debe pedir a la LNB acceso oficial a su calendario (API o widget).
 
-**public/datos/resultados.js** se genera solo. Dos veces al día, GitHub ejecuta scripts/actualizar_resultados.py, que lee la [ficha pública del club en la LNB](https://lnbchile.com/liga/uno/equipos/17), y si hay partidos nuevos guarda el cambio y Pages lo publica. Para que funcione:
+Configuración, ya hecha: en **Settings → Actions → General → Workflow permissions** está activado **Read and write permissions**. Para forzar una actualización, entra a **Actions → Actualizar datos de la liga → Run workflow**.
 
-1. En GitHub, abre **Settings → Actions → General**. En **Workflow permissions** elige **Read and write permissions** y guarda.
-2. En la pestaña **Actions**, abre **Actualizar resultados** y pulsa **Run workflow** para probarlo una vez.
+### Google Search Console
 
-Si la liga cambia su página y el lector deja de entenderla, el archivo no se modifica (la web sigue mostrando los últimos datos buenos) y GitHub envía un correo avisando del error. GitHub pausa las tareas programadas de un repositorio que pasa 60 días sin cambios. Para evitarlo, la misma tarea deja un commit vacío cuando pasan 40 días sin ninguno, así que sigue activa sola entre temporadas.
+El sitio ya incluye robots.txt, sitemap.xml, la dirección canónica, datos estructurados del club para Google, una imagen para compartir en redes y una página 404. El robot actualiza la fecha del sitemap cada vez que cambian los partidos o la plantilla.
 
-La ficha pública solo trae resultados ya jugados. Para mostrar el próximo partido, el club debe pedir a la LNB acceso oficial a su calendario (API o widget).
+1. Entra a [Google Search Console](https://search.google.com/search-console) con la cuenta de Google que administrará el sitio y pulsa **Agregar propiedad**.
+2. Elige **Dominio** y escribe deportescastro.cl.
+3. Google pedirá verificar con un registro TXT en el DNS. Como el dominio está en Cloudflare, Google suele ofrecer un botón para hacerlo automáticamente: acepta y autoriza en Cloudflare. Si no aparece, copia el registro TXT y, en Cloudflare, abre **DNS → Records → Add record**, tipo **TXT**, nombre **@**, pega el valor y guarda. Vuelve a Search Console y pulsa **Verificar**.
+4. En el menú **Sitemaps**, escribe https://deportescastro.cl/sitemap.xml y pulsa **Enviar**.
+5. En **Inspección de URLs**, revisa https://deportescastro.cl/ y pulsa **Solicitar indexación**.
+
+Google tarda desde unos días hasta un par de semanas en mostrar la página en los resultados.
 
 Los hitos se redactaron a partir del artículo de [Club Deportes Castro](https://es.wikipedia.org/wiki/Club_Deportes_Castro) entregado para este proyecto. Los perfiles sociales se identificaron en la grabación proporcionada. La foto, el escudo y la animación de la camiseta provienen del material compartido. Las licencias de DM Sans y Archivo Narrow están en public/assets.
 

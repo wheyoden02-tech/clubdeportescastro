@@ -57,3 +57,14 @@ nav{font-weight:550}.tag,figcaption{font-weight:650}.kit-inner{padding-block:30p
 @media(max-width:760px){.games{grid-template-columns:1fr}.game a{grid-template-columns:auto 1fr auto;grid-template-areas:"badge info score";padding:12px 14px}.game-score{font-size:1.5rem}.honours ul{grid-template-columns:1fr 1fr}.players{grid-template-columns:1fr 1fr}.player{grid-template-columns:40px 1fr;padding:10px 12px;min-height:68px}.player-num{font-size:1.6rem}.player b{font-size:.92rem}}
 @media(max-width:420px){.honours ul{grid-template-columns:1fr}.player{grid-template-columns:30px 1fr;column-gap:8px;padding:10px}.player-num{font-size:1.35rem}.player b{font-size:.86rem}}@media(max-width:330px){.players{grid-template-columns:1fr}}
 .tag{text-transform:uppercase}
+.credit{color:#a9c3b3}.credit a{color:#fff;font-weight:650;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}.credit a:hover{color:var(--acid)}
+/* Página 404 */
+.lost-page{min-height:100vh;display:flex;flex-direction:column}.lost-page footer{margin-top:auto}
+.lost{flex:1;display:grid;align-items:center;border-bottom:0}
+.lost-inner{position:relative;padding:clamp(70px,10vw,130px) 0}
+.lost-code{position:absolute;right:0;top:50%;transform:translateY(-50%);font:700 clamp(9rem,26vw,22rem)/.8 var(--head);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px #d2f75b59;pointer-events:none;user-select:none}
+.lost .summary{max-width:440px}
+.ball{position:absolute;width:clamp(70px,9vw,120px);right:9%;bottom:10%;fill:#e68713;stroke:#2a1606;stroke-width:3;pointer-events:none;animation:bote 1.6s cubic-bezier(.5,0,.5,1) infinite alternate}
+@keyframes bote{from{transform:translateY(-38px) rotate(-12deg)}to{transform:translateY(0) rotate(14deg)}}
+@media(max-width:760px){.lost-code{top:auto;bottom:-10px;transform:none;opacity:.7}.ball{right:6%;bottom:auto;top:24px}}
+@media(prefers-reduced-motion:reduce){.ball{animation:none}}
