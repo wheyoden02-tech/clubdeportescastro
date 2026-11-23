@@ -58,7 +58,7 @@ Toda la plantilla está en **public/datos/plantilla.js**. En GitHub, abre ese ar
 1. En GitHub, abre **Settings → Actions → General**. En **Workflow permissions** elige **Read and write permissions** y guarda.
 2. En la pestaña **Actions**, abre **Actualizar resultados** y pulsa **Run workflow** para probarlo una vez.
 
-Si la liga cambia su página y el lector deja de entenderla, el archivo no se modifica (la web sigue mostrando los últimos datos buenos) y GitHub envía un correo avisando del error. GitHub pausa las tareas programadas de un repositorio que pasa 60 días sin cambios; si eso ocurre, vuelve a activarla desde la pestaña Actions.
+Si la liga cambia su página y el lector deja de entenderla, el archivo no se modifica (la web sigue mostrando los últimos datos buenos) y GitHub envía un correo avisando del error. GitHub pausa las tareas programadas de un repositorio que pasa 60 días sin cambios. Para evitarlo, la misma tarea deja un commit vacío cuando pasan 40 días sin ninguno, así que sigue activa sola entre temporadas.
 
 La ficha pública solo trae resultados ya jugados. Para mostrar el próximo partido, el club debe pedir a la LNB acceso oficial a su calendario (API o widget).
 

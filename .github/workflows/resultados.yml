@@ -18,6 +18,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Preparar git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Leer la ficha del club en lnbchile.com
         run: python scripts/actualizar_resultados.py
       - name: Guardar cambios
@@ -25,9 +29,20 @@ jobs:
           if git diff --quiet -- public/datos/resultados.js; then
             echo "Sin resultados nuevos."
           else
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add public/datos/resultados.js
             git commit -m "Actualizar resultados desde la LNB"
+            git push
+          fi
+      # GitHub pausa las tareas programadas de un repositorio público sin actividad
+      # durante 60 días. Fuera de temporada no hay resultados nuevos, así que si pasan
+      # 40 días sin commits se deja uno vacío para que la tarea siga activa sola.
+      - name: Mantener activa la tarea fuera de temporada
+        if: always()
+        run: |
+          ultimo=$(git log -1 --format=%ct)
+          dias=$(( ($(date +%s) - ultimo) / 86400 ))
+          echo "Días desde el último commit: $dias"
+          if [ "$dias" -ge 40 ]; then
+            git commit --allow-empty -m "Mantener activa la actualización automática de resultados"
             git push
           fi

@@ -55,6 +55,7 @@ Normalmente el usuario pegará una lista nueva (de Wikipedia, de Instagram, de l
 - Si la LNB cambia el formato de su página, el script termina con error sin tocar el archivo, y GitHub avisa por correo al dueño. En ese caso hay que ajustar las expresiones regulares de `extraer()`. Para probarlo sin tocar internet, guarda una copia del HTML de la ficha y ejecuta `python scripts/actualizar_resultados.py copia.html`.
 - Los nombres de los rivales salen del diccionario `CODIGOS` del script. Si aparece un código desconocido (por ejemplo "XYZ"), se muestra tal cual: agrégalo al diccionario.
 - La ficha pública no trae los próximos partidos. Para mostrarlos, el club tendría que conseguir acceso oficial con la LNB (secretaria@lnbchile.com). Si lo consiguen, la clave va como secreto de GitHub Actions, nunca dentro de `public/`.
+- GitHub pausa las tareas programadas de repositorios públicos sin actividad durante 60 días. El último paso del workflow deja un commit vacío ("Mantener activa la actualización automática de resultados") si pasan 40 días sin commits. No lo quites: el dueño no quiere tener que reactivar nada a mano.
 - `app.js` muestra un aviso de temporada terminada cuando el último partido tiene más de 30 días.
 
 ## Animación de la camiseta
