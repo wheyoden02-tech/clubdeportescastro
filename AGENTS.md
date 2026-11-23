@@ -89,7 +89,9 @@ No pongas años fijos en textos que deban seguir siendo ciertos con el tiempo (p
 ## Rendimiento
 
 El sitio apunta a 100 en PageSpeed Insights. Al hacer cambios:
-- Imágenes en WebP y con el tamaño en que se muestran (`equipo-640/960.webp` con `srcset`, `escudo-120.webp`). La foto del equipo es el elemento principal (LCP): mantenle `fetchpriority="high"` y nunca `loading="lazy"`.
+- Imágenes con el tamaño en que se muestran. La foto del equipo (el elemento principal, LCP) va en `<picture>` con AVIF (`equipo-640/960.avif`) y respaldo WebP (`equipo-640/960.webp`): mantenle `fetchpriority="high"` y nunca `loading="lazy"`. El escudo es `escudo-120.webp`.
+- El dibujo de la cancha es `assets/cancha.svg` cargado como `<img>`. No lo vuelvas a incrustar como `<svg>` en el HTML: incrustado y girado le cuesta mucho más al procesador del celular.
+- Las dos fuentes se precargan con `fetchpriority="low"`, para que lleguen temprano sin quitarle velocidad a la foto principal. Quitar la precarga empeora el rendimiento, porque la página se redibuja cuando la fuente llega tarde.
 - Fuentes en WOFF2 recortadas a caracteres latinos (`python -m fontTools.subset`). Si agregas otra fuente, conviértela igual.
 - Todo `<img>` necesita `width` y `height`.
 - No agregues JavaScript de terceros. El script `beacon.min.js` que aparece en los informes viene de Cloudflare Web Analytics y se controla desde el panel de Cloudflare.
