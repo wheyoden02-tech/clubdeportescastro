@@ -35,7 +35,7 @@
     }
     const aviso = document.getElementById("aviso-temporada");
     if (aviso && terminada) {
-      aviso.textContent = "La temporada " + ultimo.getFullYear() + " terminó. El calendario de la próxima se publica en la web de la liga.";
+      aviso.textContent = "Sin partidos en las últimas semanas. Las próximas fechas se publican en el calendario oficial de la liga.";
       aviso.hidden = false;
     }
   } else {
@@ -63,12 +63,26 @@
       grilla.append(li);
     }
     const t = document.getElementById("titulo-plantilla-sub");
-    if (t && ultimo) t.textContent = (terminada ? "Jugaron la temporada " : "Plantilla ") + ultimo.getFullYear();
+    if (t && ultimo) t.textContent = "Temporada " + ultimo.getFullYear();
     const dt = document.getElementById("entrenador");
     if (dt && extra.entrenador) dt.textContent = extra.entrenador;
     else if (dt) dt.parentElement.hidden = true;
   } else {
     const s = document.getElementById("plantilla");
     if (s) s.hidden = true;
+  }
+
+  // La camiseta (video) se descarga recién cuando el visitante se acerca a esa sección,
+  // para no competir con la carga inicial. Con "reducir movimiento" se queda en la imagen fija.
+  const giro = document.querySelector("video.giro");
+  if (giro && "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        if (!giro.getAttribute("src")) giro.src = giro.dataset.src;
+        giro.play().catch(() => {});
+      } else if (giro.getAttribute("src")) {
+        giro.pause();
+      }
+    }, { rootMargin: "300px 0px" }).observe(giro);
   }
 })();

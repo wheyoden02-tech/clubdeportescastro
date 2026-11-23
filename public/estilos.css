@@ -1,5 +1,5 @@
-@font-face{font-family:"Archivo Narrow";src:url(assets/archivo-narrow.ttf) format("truetype");font-weight:400 700;font-display:swap}
-@font-face{font-family:"DM Sans";src:url(assets/dm-sans.ttf) format("truetype");font-weight:100 1000;font-display:swap}
+@font-face{font-family:"Archivo Narrow";src:url(assets/archivo-narrow.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"DM Sans";src:url(assets/dm-sans.woff2) format("woff2");font-weight:100 1000;font-display:swap}
 :root{--forest:#082f25;--ink:#102e24;--acid:#d2f75b;--paper:#f8f8ef;--line:#bdc8b8;--head:"Archivo Narrow","Arial Narrow",sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:1rem/1.62 "DM Sans",sans-serif;font-optical-sizing:auto}.wrap{width:min(1240px,89%);margin:auto}a{color:inherit;text-decoration:none}a:focus-visible,input:focus-visible{outline:3px solid #e68713;outline-offset:5px}.skip{position:absolute;left:1em;top:-8em;background:white;padding:.7em;z-index:10}.skip:focus{top:1em}
 header,.hero,footer{background:var(--forest);color:#fff}.nav,.brand,nav,figcaption,footer>div{display:flex;align-items:center}.nav{min-height:82px;justify-content:space-between;border-bottom:1px solid #ffffff33}.brand{gap:12px;font:700 .92rem/.99 var(--head);letter-spacing:.08em}.brand strong{font-size:1.55rem;letter-spacing:.035em}.crest{width:48px;height:48px;border-radius:50%;overflow:hidden;display:grid;place-items:center}.crest img{width:110%;max-width:none}.brand:hover,nav a:hover{color:var(--acid)}nav{gap:2rem;font-size:.96rem}
@@ -68,3 +68,7 @@ nav{font-weight:550}.tag,figcaption{font-weight:650}.kit-inner{padding-block:30p
 @keyframes bote{from{transform:translateY(-38px) rotate(-12deg)}to{transform:translateY(0) rotate(14deg)}}
 @media(max-width:760px){.lost-code{top:auto;bottom:-10px;transform:none;opacity:.7}.ball{right:6%;bottom:auto;top:24px}}
 @media(prefers-reduced-motion:reduce){.ball{animation:none}}
+.giro{aspect-ratio:440/768;background:#e7edda;-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent),linear-gradient(to bottom,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
+.crest img{height:auto}
+/* Las secciones de abajo se calculan recién cuando se acercan a la pantalla */
+#partidos,.roster,#historia,.kits,.social{content-visibility:auto;contain-intrinsic-size:auto 700px}

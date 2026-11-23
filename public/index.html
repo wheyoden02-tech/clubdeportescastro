@@ -35,12 +35,13 @@
   }
   </script>
   <link rel="icon" href="assets/escudo.jpg">
+  <link rel="preload" href="assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body id="inicio">
 <a class="skip" href="#principal">Ir al contenido</a>
 <header><div class="wrap nav">
-  <a class="brand" href="#inicio"><span class="crest"><img src="assets/escudo.jpg" alt=""></span><span>CLUB DEPORTES<br><strong>CASTRO</strong></span></a>
+  <a class="brand" href="#inicio"><span class="crest"><img src="assets/escudo-120.webp" alt="" width="120" height="120"></span><span>CLUB DEPORTES<br><strong>CASTRO</strong></span></a>
   <nav aria-label="Principal"><a href="#partidos">Partidos</a><a href="#plantilla">Plantilla</a><a href="#historia">Historia</a><a href="#camisetas">Camiseta</a></nav>
 </div></header>
 <main id="principal">
@@ -61,7 +62,7 @@
   <h1 id="titulo">EL LEÓN<br><em>DE CHILOÉ</em></h1>
   <p class="summary">Básquetbol de Castro, Chiloé. Los Leones juegan de local en el Gimnasio Fiscal.</p>
   <a class="button" href="#historia">Historia del club</a></div>
-  <figure class="team"><div class="image-frame"><img src="assets/equipo.webp" alt="Jugadores y cuerpo técnico de Deportes Castro reunidos bajo el aro, con la camiseta verde." width="960" height="640"></div><figcaption><span>CLUB DEPORTES CASTRO</span><span>CHILOÉ, CHILE</span></figcaption></figure>
+  <figure class="team"><div class="image-frame"><img src="assets/equipo-960.webp" srcset="assets/equipo-640.webp 640w, assets/equipo-960.webp 960w" sizes="(max-width: 760px) 88vw, 600px" fetchpriority="high" alt="Jugadores y cuerpo técnico de Deportes Castro reunidos bajo el aro, con la camiseta verde." width="960" height="640"></div><figcaption><span>CLUB DEPORTES CASTRO</span><span>CHILOÉ, CHILE</span></figcaption></figure>
 </div></section>
 <section id="partidos" class="wrap section games-section" aria-labelledby="titulo-partidos">
 <div class="section-head"><div><p class="tag dark">LIGA NACIONAL DE BÁSQUETBOL</p><h2 id="titulo-partidos">Últimos partidos</h2></div><p class="record" id="record"></p></div>
@@ -93,7 +94,7 @@
   <p>Disponible en verde y en blanco. Los pedidos y las tallas se coordinan con el club por mensaje directo en Instagram.</p>
   <a class="button buy" href="https://ig.me/m/clubdeportescastro" rel="noopener">Pedir por Instagram</a>
 </div>
-<div class="display"><img class="giro" src="assets/camiseta-giro.webp" alt="La camiseta número 8 de Deportes Castro gira y cambia de verde a blanco." width="308" height="538"></div>
+<div class="display"><video class="giro" data-src="assets/camiseta-giro.mp4" poster="assets/camiseta-poster.webp" muted loop playsinline preload="none" width="440" height="768" aria-label="La camiseta número 8 de Deportes Castro gira y cambia de verde a blanco."></video></div>
 </div></section>
 <section class="wrap section social" id="redes"><div><h2>Redes del club</h2></div><div class="social-links"><a href="https://www.instagram.com/clubdeportescastro/"><b>Instagram</b><span>@clubdeportescastro</span></a><a href="https://www.facebook.com/profile.php?id=100064585005667"><b>Facebook</b><span>Club Deportes Castro</span></a></div></section>
 </main><footer><div class="wrap"><span>Club Deportes Castro</span><span>Castro · Isla de Chiloé · Chile</span><span class="credit">Página diseñada por <a href="https://sinpausas.cl" rel="noopener">Sin Pausas</a></span></div></footer>

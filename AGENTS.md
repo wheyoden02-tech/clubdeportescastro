@@ -15,7 +15,7 @@ Sitio estático para deportescastro.cl, el club de básquetbol de Castro, Chilo�
 | `public/datos/plantilla.js` | Complementos manuales y opcionales: entrenador, más nombres completos y posiciones por jugador |
 | `scripts/actualizar_datos_liga.py` | Robot que lee la ficha pública del club en la LNB y regenera `liga.js` |
 | `.github/workflows/datos-liga.yml` | Ejecuta el robot en GitHub Actions dos veces al día |
-| `public/assets/camiseta-giro.webp` | Animación recortada de la camiseta (410 cuadros) |
+| `public/assets/camiseta-giro.mp4` | Video de la camiseta girando, ya compuesto sobre el color de fondo de su sección (#e7edda) |
 
 Los datos son archivos `.js` (`window.LIGA = {...}`, `window.PLANTILLA = {...}`) y no `.json` para que la página también funcione si se abre `public/index.html` directamente desde el disco.
 
@@ -66,7 +66,18 @@ window.PLANTILLA = {
 
 ## Animación de la camiseta
 
-`camiseta-giro.webp` sale de los cuadros 0-409 del video promocional del club (720×1280, 25 fps), escalados al 70 % y recortados en x=98, y=155, con un tamaño de 308×538. La máscara se rehízo con mediana temporal más refinado por color para evitar parpadeos. Los scripts de ese proceso no quedaron en el repositorio, y el video está ignorado por git (`/*.mp4`). No la regeneres salvo que el usuario lo pida.
+`camiseta-giro.mp4` (H.264, 440×768, 25 fps, unos 0,7 MB) sale de los cuadros 0-409 del video promocional del club (720×1280), recortados en x=140, y=221. La camiseta se recortó con una máscara (mediana temporal más refinado por color, para evitar parpadeos) y se compuso sobre **#e7edda**, el fondo de la sección `.kits`. Por eso el video no tiene transparencia: **si cambias el color de fondo de esa sección, el video quedará como un rectángulo visible** y habría que regenerarlo. Un desvanecido CSS (`mask-image` en `.giro`) disimula diferencias mínimas de color en los bordes.
+
+- `app.js` asigna el `src` del video recién cuando la sección está cerca de la pantalla, y lo pausa al salir. Así no compite con la carga inicial. Con "reducir movimiento" activado solo se muestra `camiseta-poster.webp`.
+- Los scripts del recorte no quedaron en el repositorio, y el video original está ignorado por git (`/*.mp4` en la raíz). No lo regeneres salvo que el usuario lo pida.
+
+## Rendimiento
+
+El sitio apunta a 100 en PageSpeed Insights. Al hacer cambios:
+- Imágenes en WebP y con el tamaño en que se muestran (`equipo-640/960.webp` con `srcset`, `escudo-120.webp`). La foto del equipo es el elemento principal (LCP): mantenle `fetchpriority="high"` y nunca `loading="lazy"`.
+- Fuentes en WOFF2 recortadas a caracteres latinos (`python -m fontTools.subset`). Si agregas otra fuente, conviértela igual.
+- Todo `<img>` necesita `width` y `height`.
+- No agregues JavaScript de terceros. El script `beacon.min.js` que aparece en los informes viene de Cloudflare Web Analytics y se controla desde el panel de Cloudflare.
 
 ## Probar en local
 
